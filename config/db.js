@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const connectDB = async () => {
      
-    const url = process.env.MONGO_UR || "< add atlas mongo url >"
+    const url = process.env.MONGO_UR || "mongodb+srv://dbUser:cumberbitch17@cluster0.cjzy9.mongodb.net/test"
     
     try{
         const conn = await mongoose.connect(url, {
