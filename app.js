@@ -5,9 +5,12 @@ const mongoose = require('mongoose');
 // const path = require('path');
 
 const adminRoute = require('./routes/admin');
+const userRoute = require('./routes/user');
 const app= express();
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+
+
 //Handling CORS error
 app.use((req,res,next) => {
     res.setHeader('Access-Control-Allow-Origin','*');
@@ -17,6 +20,7 @@ app.use((req,res,next) => {
 });
 
 app.use('/admin',adminRoute);
+app.use('/user',userRoute);
 
 mongoose.connect("mongodb://localhost:27017/vendingDB", {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;

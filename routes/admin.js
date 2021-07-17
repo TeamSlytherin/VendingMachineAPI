@@ -79,3 +79,7 @@ adminRouter.delete('/reset',async(req,res) => {
 
 
 module.exports= adminRouter;
+
+
+// command to restart server-sudo systemctl restart mongod
+
