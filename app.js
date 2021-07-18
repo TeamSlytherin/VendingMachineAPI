@@ -21,7 +21,7 @@ app.use('/user',userRoute);
 
 
 
-const POST = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 
 const connectServer = async (PORT) => {
     await connectDB()
