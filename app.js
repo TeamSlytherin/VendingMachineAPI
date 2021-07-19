@@ -39,7 +39,6 @@ app.post('/api/post', verifyToken, (req,res) => {
       });
 })
 
-<<<<<<< HEAD
 app.post('/api/login', (req, res) => {
 // Mock user or admin
 const user = {
@@ -62,7 +61,7 @@ const user = {
 // VerifyToken middleware function
 function verifyToken(req, res, next) {
     // Get auth header value
-    const firstHeader = req.headers['authorization'];
+    const firstHeader = req.headers['Bearer'];
     // Check if bearer is undefined
     if(typeof firstHeader !== 'undefined') {
      // Split at the space
@@ -80,8 +79,6 @@ function verifyToken(req, res, next) {
   
   }
 
-=======
->>>>>>> 55d09ef5754f29121e72bd97abec7d50c22b1113
 const PORT = process.env.PORT || 4000;
 
 const connectServer = async (PORT) => {
