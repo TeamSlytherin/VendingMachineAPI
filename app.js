@@ -6,6 +6,8 @@ const adminRoute = require('./routes/admin');
 const userRoute = require('./routes/user');
 const app= express();
 
+const productRouter = require('./routes/products')
+
 dotenv.config()
 
 app.use(express.json())
@@ -18,7 +20,7 @@ app.use(cors({credentials: true,origin: true}));
 //Routes 
 app.use('/admin',adminRoute);
 app.use('/user',userRoute);
-
+app.use('/products',productRouter)
 
 
 const PORT = process.env.PORT || 4000;
