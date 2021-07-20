@@ -21,16 +21,7 @@ app.use(cors({credentials: true,origin: true}));
 //Routes 
 app.use('/admin',adminRoute);
 app.use('/user',userRoute);
-<<<<<<< HEAD
 app.use('/products',productRouter)
-=======
-
-app.get('/api', (req, res) => {
-res.json({
-   message: 'Welcome to the VendingMaachine'
-});
-});
->>>>>>> 161fed829dd72c06c3f81ae4c9b580ad52e860f5
 
 app.post('/api/post', verifyToken, (req,res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {

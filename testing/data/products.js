@@ -3,17 +3,17 @@ const products = [
     {
         title: "Pepsi",
         price: 30,
-        quantitiy: 100
+        quantity: 100
     },
     {
         title: "Milshake",
-        price: 560,
-        quantitiy: 100
+        price: 60,
+        quantity: 100
     },
     {
         title: "Normal Tea",
-        price: 790,
-        quantitiy: 100
+        price: 70,
+        quantity: 100
     }
 ]
 
