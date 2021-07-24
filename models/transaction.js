@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 
 const TransactionSchema = new mongoose.Schema(
   {
-    token:{
-        type: String,
-       
-    },
+  
     Orderedproduct: {
       name: { type: String, required: true },
       quantity: { type: Number, required: true },

@@ -1,13 +1,13 @@
 const { Router } = require('express');
-
+const verifyToken = require('../middleware/auth')
 const { getProduct,confirmProduct,cancelTransaction  } = require('../controllers/productController')
 const router = Router();
 
 router.get('/', getProduct)
 
-router.get('/cancelProduct',cancelTransaction)
+router.get('/cancelProduct', verifyToken ,cancelTransaction)
 
-router.get('/confirmProduct/',confirmProduct)
+router.get('/confirmProduct', verifyToken  ,confirmProduct)
 
 
 

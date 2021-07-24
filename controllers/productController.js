@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const Products = require("../models/product");
 const Transaction = require("../models/transaction");
 const coinAlgo = require("../utils/coinAlgo");
+const generateToken = require('../utils/generateToken')
 
 const getProduct = asyncHandler(async (req, res) => {
   const { penny, nickel, dime, quater, quantity, product_name } = req.body;
@@ -22,6 +23,9 @@ const getProduct = asyncHandler(async (req, res) => {
       productID: product._id,
     };
 
+    
+    
+
     const createOrder = await Transaction.create({
       Orderedproduct: orderDetail,
       amountReceived: totalMoney,
@@ -29,7 +33,8 @@ const getProduct = asyncHandler(async (req, res) => {
 
     res.status(201).json({
       message: "Please give a confirmation",
-      userOrder: createOrder,
+      token: generateToken(createOrder._id),
+      orderDetails: orderDetail,
     });
   }
 
@@ -43,36 +48,38 @@ const getProduct = asyncHandler(async (req, res) => {
 
 // After confirmation of product
 const confirmProduct = asyncHandler(async (req, res) => {
-  const { userOrder, userId } = req.body;
+  const { transactionDetails  } = req.body;
 
-  console.log(userOrder);
+  console.log(transactionDetails);
 
   //check is secretKey exists
 
   //logic
-  //const orderDetails = await Transaction.findOne({ userOrder._id });
-  const moneyReceived = userOrder.amountReceived;
-  const costPrice =
-    userOrder.Orderedproduct.price * userOrder.Orderedproduct.quantity;
-  const change = moneyReceived - costPrice;
-  // coinAlgo
+  //const orderDetails = await Transaction.findOne({ userOrder._id })
+  // const moneyReceived = transactionDetails.amountReceived;
+  // const costPrice =
+  // transactionDetails.Orderedproduct.price * transactionDetails.Orderedproduct.quantity;
+  // const change = moneyReceived - costPrice;
+  // // coinAlgo
 
-  const coin = coinAlgo(change);
+  // const coin = coinAlgo(change);
 
-  if (coin) {
-    console.log("Coin table updated");
+  // if (coin) {
+  //   console.log("Coin table updated");
 
-    res
-      .status(200)
-      .json({
-        Pennies: noOfPenny,
-        Nickels: noOfNickel,
-        Diemes: noOfDime,
-        Quaters: noOfQuater,
-      });
-  } else {
-    //
-  }
+  //   res
+  //     .status(200)
+  //     .json({
+  //       Pennies: noOfPenny,
+  //       Nickels: noOfNickel,
+  //       Diemes: noOfDime,
+  //       Quaters: noOfQuater,
+  //     });
+  // } else {
+  //   //
+  // }
+
+    res.json({ message: "done"})
 });
 
 //After cancelling the product
