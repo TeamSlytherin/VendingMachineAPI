@@ -1,15 +1,15 @@
-const express = require('express')
-const router = express.Router()
-const {  } = require('../controllers/productController')
+const { Router } = require('express');
 
+const { getProduct,confirmProduct,cancelTransaction  } = require('../controllers/productController')
+const router = Router();
 
 router.get('/', getProduct)
 
-router.get('/cancelProduct',)
+router.get('/cancelProduct',cancelTransaction)
 
-router.get('/confirmProduct',)
+router.get('/confirmProduct/',confirmProduct)
 
 
 
-module.exports = router
+module.exports = router;
 

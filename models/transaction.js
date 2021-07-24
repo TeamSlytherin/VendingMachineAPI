@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const orderSchema = new mongoose.Schema(
+const TransactionSchema = new mongoose.Schema(
   {
     token:{
         type: String,
-        required: true, 
+       
     },
     Orderedproduct: {
       name: { type: String, required: true },
@@ -23,7 +23,7 @@ const orderSchema = new mongoose.Schema(
     },
     change: {
       noOfQuaters: { type: Number, default: 0 },
-      noOfDimes: { type: Number, defaukt: 0 },
+      noOfDimes: { type: Number, default: 0 },
       noOfNickel: { type: Number, default: 0 },
       noOfPenny: { type: Number, default: 0 },
       totalChange: { type: Number, default: 0 },
@@ -34,5 +34,5 @@ const orderSchema = new mongoose.Schema(
   }
 );
 
-const Order = mongoose.model("Order", orderSchema);
-module.exports = Order;
+const Transaction = mongoose.model("Transaction", TransactionSchema);
+module.exports = Transaction;

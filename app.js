@@ -3,11 +3,10 @@ const cors = require('cors')
 const connectDB = require('./config/db')
 const dotenv = require('dotenv')
 const adminRoute = require('./routes/admin');
-const userRoute = require('./routes/user');
 const jwt =  require('jsonwebtoken');
 const app= express();
 
-const productRouter = require('./routes/products')
+const productRoute = require('./routes/products')
 
 dotenv.config()
 
@@ -20,8 +19,7 @@ app.use(cors({credentials: true,origin: true}));
 
 //Routes 
 app.use('/admin',adminRoute);
-app.use('/user',userRoute);
-app.use('/products',productRouter)
+app.use('/products',productRoute)
 
 app.post('/api/post', verifyToken, (req,res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
