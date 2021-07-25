@@ -18,7 +18,14 @@ const TransactionSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    change: {
+    changeRecv: {
+      noOfQuaters: { type: Number, default: 0 },
+      noOfDimes: { type: Number, default: 0 },
+      noOfNickel: { type: Number, default: 0 },
+      noOfPenny: { type: Number, default: 0 },
+      
+    },
+    changeSent: {
       noOfQuaters: { type: Number, default: 0 },
       noOfDimes: { type: Number, default: 0 },
       noOfNickel: { type: Number, default: 0 },
