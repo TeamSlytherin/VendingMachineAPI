@@ -17,7 +17,7 @@ const getProduct = asyncHandler(async (req, res) => {
   const product = await Products.findOne({ title: product_name });
   console.log(product);
   //check
-  if (totalMoney >= (product.price*quantity) && quantity <= product.quantity) {
+  if (totalMoney >= product.price * quantity && quantity <= product.quantity) {
     //update transaction table
     const orderDetail = {
       name: product_name,
@@ -46,20 +46,21 @@ const getProduct = asyncHandler(async (req, res) => {
     });
   }
   //error
-  else if (totalMoney < product.price*quantity) {
+  else if (totalMoney < product.price * quantity) {
     res.status(400).json({ message: "Insufficient money" });
   } else {
     res.status(400).json({ message: "Sorry not able to process your request" });
   }
 });
 
-
-
 // After confirmation of product
 const confirmProduct = asyncHandler(async (req, res) => {
   const { transactionDetails } = req.body;
-  const product = await Products.findOne({ title: transactionDetails.Orderedproduct.name });
-  product.quantity=product.quantity - transactionDetails.Orderedproduct.quantity;
+  const product = await Products.findOne({
+    title: transactionDetails.Orderedproduct.name,
+  });
+  product.quantity =
+    product.quantity - transactionDetails.Orderedproduct.quantity;
   await product.save();
   //check is secretKey exists
   //logic
@@ -92,12 +93,12 @@ const confirmProduct = asyncHandler(async (req, res) => {
 
 //After cancelling the product
 const cancelTransaction = asyncHandler(async (req, res) => {
-  const { userOrder, userId } = req.body;
+  const { transactionDetails } = req.body;
 
-  //const transactionId = req.params.id;
-  const transaction = await Transaction.findById(transactionId);
+  const transaction = await Transaction.deleteOne({
+    _id: transactionDetails._id,
+  });
   if (transaction) {
-    transaction.remove(transactionId);
     console.log("Transaction deleted");
     res.status(200).json({ message: "Thank you for shopping with us." });
   }

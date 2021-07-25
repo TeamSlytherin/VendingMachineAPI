@@ -4,7 +4,8 @@
   "description": "- Anything that is shared among many controllers, for that logic we make a new folder called \"utils\"",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
