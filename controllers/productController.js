@@ -83,7 +83,6 @@ const confirmProduct = asyncHandler(async (req, res) => {
 
   if (coin) {
     console.log("Coin table updated");
-
     res.status(200).json(coin);
   } else {
     //
